@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'header.html' %}
+    <title>Comparison Results</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Comparison Results</h1>
+        <h3>Images Compared: {{ img1 }} and {{ img2 }}</h3>
+
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar">
+                <h4>Views</h4>
+                <div id="view-list">
+                    {% for view in views %}
+                        <a href="#" class="view-link" data-view="{{ loop.index0 }}">{{ view.title }}</a>
+                    {% endfor %}
+                </div>
+
+                <!-- Back to the image selector -->
+                <div style="margin-top: 20px;">
+                    <a href="{{ url_for('ui.index') }}" class="back-button">Back to Image Selection</a>
+                </div>
+            </div>
+
+            <!-- Main content area -->
+            <div class="col-md-9 main-content">
+                {% for view in views %}
+                    <div id="view-{{ loop.index0 }}" class="view-container table-container" style="{% if loop.index0 != 0 %}display:none{% endif %}">
+                        <h2>{{ view.title }}</h2>
+                        <p>{{ view.description }}</p>
+                        <!-- Render the DataFrame as an HTML table -->
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-condensed table-fixed">
+                                {{ view.df|safe }}
+                            </table>
+                        </div>                                                
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <script>
+        // JavaScript to handle view switching
+        document.querySelectorAll('.view-link').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const selectedViewIndex = event.target.getAttribute('data-view');
+
+                document.querySelectorAll('.view-container').forEach(function(container) {
+                    container.style.display = 'none';
+                });
+
+                document.getElementById('view-' + selectedViewIndex).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

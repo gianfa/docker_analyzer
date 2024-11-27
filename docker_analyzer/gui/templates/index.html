@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'header.html' %}
+    <title>{{ config['IMAGE_SELECTOR_TITLE'] }}</title>
+</head>
+<body>
+    <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg" style="width: 40rem;">
+            <div class="card-body">
+                <h1 class="text-center">{{ config['IMAGE_SELECTOR_SUBTITLE'] }}</h1>
+                <h5 class="text-center text-muted mb-4">{{ config['IMAGE_SELECTOR_DESC'] }}</h5>
+
+                {% if images %}
+                    <form method="POST" action="{{ url_for('ui.compare_images') }}">
+                        <div class="form-row mb-3">
+                            <div class="col-md-5">
+                                <label for="img1">Select first Docker image:</label>
+                            </div>
+                            <div class="col-md-7">
+                                <select name="img1" id="img1" class="form-control">
+                                    {% for img in images %}
+                                        <option value="{{ img }}">{{ img }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="col-md-5">
+                                <label for="img2">Select second Docker image:</label>
+                            </div>
+                            <div class="col-md-7">
+                                <select name="img2" id="img2" class="form-control">
+                                    {% for img in images %}
+                                        <option value="{{ img }}">{{ img }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Compare</button>
+                        </div>
+                    </form>
+                {% else %}
+                    <p class="text-danger text-center">No Docker images available. Please add some images and try again.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+</body>
+</html>

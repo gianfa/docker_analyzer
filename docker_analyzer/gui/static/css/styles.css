@@ -1,0 +1,147 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-fluid {
+    flex: 1; /* Make the main content fill the space between the header and footer */
+}
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #343a40;
+    padding: 20px;
+    width: 250px;
+    color: white;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background-color: #6c757d;
+}
+
+.main-content {
+    margin-left: 270px; /* Space for the sidebar */
+    flex: 1;
+    padding: 20px 0; /* Add padding for content spacing */
+}
+
+.table-responsive {
+    overflow-x: auto; /* Enable horizontal scrolling for wide tables */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #343a40;
+    color: #ffffff;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #343a40;
+    margin: 20px 0;
+}
+
+h3 {
+    text-align: center;
+}
+
+#view-title {
+    font-size: 2.5em;
+    text-align: left;
+    margin-top: 20px;
+    color: #343a40;
+}
+
+#view-description {
+    font-size: 1.2em;
+    color: #6c757d;
+    margin: 10px 0 20px 0;
+}
+
+.back-button {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #218838;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 12px;
+    padding: 20px;
+}
+
+h5 {
+    font-size: 1.2em;
+    color: #6c757d;
+}
+
+label {
+    font-weight: 500;
+}
+
+.form-control {
+    font-size: 1em;
+    padding: 10px;
+    height: calc(2.6em);
+}
+
+.btn-lg {
+    padding: 10px 20px;
+    font-size: 1.2em;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px 0;
+}

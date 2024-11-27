@@ -1,0 +1,117 @@
+/* DataFrame style */
+
+/* Base style for DataFrame tables */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+    table-layout: fixed;  /* Ensures column widths are respected */
+}
+
+/* Column header with adaptive font */
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #343a40;
+    color: #ffffff;
+    font-size: 0.9em;
+    text-align: center;
+    white-space: nowrap;
+    padding: 10px; /* Adds padding to prevent overlap */
+}
+
+/* Table cells */
+.table td,
+.table th {
+    padding: 10px;  /* Adds padding to prevent overlap */
+    vertical-align: middle;  /* Centers text vertically */
+    border-top: 1px solid #dee2e6;
+    text-align: left;  /* Left-aligns text for readability */
+}
+
+/* Alternating row style */
+.table tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+/* Hover style for rows */
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive table */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-y: visible;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* Handling content for the CreatedBy column */
+.created-by-column {
+    width: 250px;  /* Fixed width for the column */
+    white-space: normal;  /* Allow text wrapping */
+    word-wrap: break-word;  /* Break long words */
+    word-break: break-all;
+    overflow-wrap: break-word;  /* Ensure word wrapping support */
+    font-size: 0.85em;  /* Slightly smaller font for readability */
+    line-height: 1.4em;  /* Increases line height for readability */
+}
+
+/* Reduce font size in table cells for better readability */
+.table td {
+    font-size: 0.9em;  /* Slightly reduced font size for cells */
+    word-wrap: break-word;  /* Break long text */
+    white-space: normal;  /* Allow text wrapping */
+    vertical-align: top;  /* Align content to the top */
+}
+
+/* Fixed width for the CreatedBy column with text wrapping */
+.created-by-column {
+    width: 250px;  /* Fixed width */
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    font-size: 0.85em;
+    line-height: 1.2em;
+}
+
+/* Maintains column width and uses Bootstrap text-truncate */
+.table th {
+    text-overflow: ellipsis;
+    overflow: visible;
+    white-space: nowrap;
+    max-width: 200px;  /* You can adjust this width */
+    text-align: center;
+    position: relative;
+    cursor: pointer;  /* Changes cursor to indicate tooltip */
+}
+
+/* Custom tooltip */
+th[data-title]::after {
+    content: attr(data-title);
+    position: relative;
+    background-color: #3da8e0;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    font-size: 0.85em;
+    z-index: 99999;
+    top: -30px;  /* Position tooltip above the cell */
+    left: -15%;  /* Adjust position for better centering */
+    transform: translateX(55%);  /* Horizontally center tooltip */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s ease, visibility 0.2s ease;  /* Smooth transition effect */
+}
+
+/* Tooltip visible on hover */
+th[data-title]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}

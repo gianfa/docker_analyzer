@@ -1,0 +1,116 @@
+[
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "CMD [\"python3\"]",
+        "Id": "sha256:8223e5d99418aab7262163179079355dd61bff1cb8a60db63c0e8178a1e899ab",
+        "Size": 0,
+        "Tags": [
+            "python:3.9"
+        ]
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "RUN /bin/sh -c set -eux; \tfor src in idle3 pip3 pydoc3 python3 python3-config; do \t\tdst=\"$(echo \"$src\" | tr -d 3)\"; \t\t[ -s \"/usr/local/bin/$src\" ]; \t\t[ ! -e \"/usr/local/bin/$dst\" ]; \t\tln -svT \"$src\" \"/usr/local/bin/$dst\"; \tdone # buildkit",
+        "Id": "<missing>",
+        "Size": 36,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "RUN /bin/sh -c set -eux; \t\twget -O python.tar.xz \"https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz\"; \techo \"$PYTHON_SHA256 *python.tar.xz\" | sha256sum -c -; \twget -O python.tar.xz.asc \"https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc\"; \tGNUPGHOME=\"$(mktemp -d)\"; export GNUPGHOME; \tgpg --batch --keyserver hkps://keys.openpgp.org --recv-keys \"$GPG_KEY\"; \tgpg --batch --verify python.tar.xz.asc python.tar.xz; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\" python.tar.xz.asc; \tmkdir -p /usr/src/python; \ttar --extract --directory /usr/src/python --strip-components=1 --file python.tar.xz; \trm python.tar.xz; \t\tcd /usr/src/python; \tgnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\"; \t./configure \t\t--build=\"$gnuArch\" \t\t--enable-loadable-sqlite-extensions \t\t--enable-optimizations \t\t--enable-option-checking=fatal \t\t--enable-shared \t\t--with-ensurepip \t; \tnproc=\"$(nproc)\"; \tEXTRA_CFLAGS=\"$(dpkg-buildflags --get CFLAGS)\"; \tLDFLAGS=\"$(dpkg-buildflags --get LDFLAGS)\"; \tmake -j \"$nproc\" \t\t\"EXTRA_CFLAGS=${EXTRA_CFLAGS:-}\" \t\t\"LDFLAGS=${LDFLAGS:-}\" \t; \trm python; \tmake -j \"$nproc\" \t\t\"EXTRA_CFLAGS=${EXTRA_CFLAGS:-}\" \t\t\"LDFLAGS=${LDFLAGS:--Wl},-rpath='\\$\\$ORIGIN/../lib'\" \t\tpython \t; \tmake install; \t\tbin=\"$(readlink -ve /usr/local/bin/python3)\"; \tdir=\"$(dirname \"$bin\")\"; \tmkdir -p \"/usr/share/gdb/auto-load/$dir\"; \tcp -vL Tools/gdb/libpython.py \"/usr/share/gdb/auto-load/$bin-gdb.py\"; \t\tcd /; \trm -rf /usr/src/python; \t\tfind /usr/local -depth \t\t\\( \t\t\t\\( -type d -a \\( -name test -o -name tests -o -name idle_test \\) \\) \t\t\t-o \\( -type f -a \\( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \\) \\) \t\t\\) -exec rm -rf '{}' + \t; \t\tldconfig; \t\texport PYTHONDONTWRITEBYTECODE=1; \tpython3 --version; \t\tpip3 install \t\t--disable-pip-version-check \t\t--no-cache-dir \t\t--no-compile \t\t'setuptools==58.1.0' \t\twheel \t; \tpip3 --version # buildkit",
+        "Id": "<missing>",
+        "Size": 51870072,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "ENV PYTHON_SHA256=6b281279efd85294d2d6993e173983a57464c0133956fbbb5536ec9646beaf0c",
+        "Id": "<missing>",
+        "Size": 0,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "ENV PYTHON_VERSION=3.9.20",
+        "Id": "<missing>",
+        "Size": 0,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "ENV GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568",
+        "Id": "<missing>",
+        "Size": 0,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "RUN /bin/sh -c set -eux; \tapt-get update; \tapt-get install -y --no-install-recommends \t\tlibbluetooth-dev \t\ttk-dev \t\tuuid-dev \t; \trm -rf /var/lib/apt/lists/* # buildkit",
+        "Id": "<missing>",
+        "Size": 17776164,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "ENV LANG=C.UTF-8",
+        "Id": "<missing>",
+        "Size": 0,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1729293820,
+        "CreatedBy": "ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "Id": "<missing>",
+        "Size": 0,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1704762865,
+        "CreatedBy": "RUN /bin/sh -c set -ex; \tapt-get update; \tapt-get install -y --no-install-recommends \t\tautoconf \t\tautomake \t\tbzip2 \t\tdefault-libmysqlclient-dev \t\tdpkg-dev \t\tfile \t\tg++ \t\tgcc \t\timagemagick \t\tlibbz2-dev \t\tlibc6-dev \t\tlibcurl4-openssl-dev \t\tlibdb-dev \t\tlibevent-dev \t\tlibffi-dev \t\tlibgdbm-dev \t\tlibglib2.0-dev \t\tlibgmp-dev \t\tlibjpeg-dev \t\tlibkrb5-dev \t\tliblzma-dev \t\tlibmagickcore-dev \t\tlibmagickwand-dev \t\tlibmaxminddb-dev \t\tlibncurses5-dev \t\tlibncursesw5-dev \t\tlibpng-dev \t\tlibpq-dev \t\tlibreadline-dev \t\tlibsqlite3-dev \t\tlibssl-dev \t\tlibtool \t\tlibwebp-dev \t\tlibxml2-dev \t\tlibxslt-dev \t\tlibyaml-dev \t\tmake \t\tpatch \t\tunzip \t\txz-utils \t\tzlib1g-dev \t; \trm -rf /var/lib/apt/lists/* # buildkit",
+        "Id": "<missing>",
+        "Size": 587538950,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1704762865,
+        "CreatedBy": "RUN /bin/sh -c set -eux; \tapt-get update; \tapt-get install -y --no-install-recommends \t\tgit \t\tmercurial \t\topenssh-client \t\tsubversion \t\t\t\tprocps \t; \trm -rf /var/lib/apt/lists/* # buildkit",
+        "Id": "<missing>",
+        "Size": 177109018,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1683761399,
+        "CreatedBy": "RUN /bin/sh -c set -eux; \tapt-get update; \tapt-get install -y --no-install-recommends \t\tca-certificates \t\tcurl \t\tgnupg \t\tnetbase \t\tsq \t\twget \t; \trm -rf /var/lib/apt/lists/* # buildkit",
+        "Id": "<missing>",
+        "Size": 48455490,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1683761399,
+        "CreatedBy": "CMD [\"bash\"]",
+        "Id": "<missing>",
+        "Size": 0,
+        "Tags": null
+    },
+    {
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": 1683761399,
+        "CreatedBy": "ADD rootfs.tar.xz / # buildkit",
+        "Id": "<missing>",
+        "Size": 116514012,
+        "Tags": null
+    }
+]

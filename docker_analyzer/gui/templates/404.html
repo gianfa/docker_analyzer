@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops! Page Not Found</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="error-container">
+        <div class="icon-404">😕</div>
+        <h1>404 - Page Not Found</h1>
+        <p class="lead">Oops! It looks like you took a wrong turn.</p>
+        <p class="lead">Don't worry, we'll get you back on track.</p>
+        <a href="/" class="btn-home">Take Me Home</a>
+    </div>
+</body>
+</html>
