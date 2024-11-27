@@ -23,29 +23,16 @@ Docker Analyzer CLI is a Python-based command-line interface designed to analyze
 
 ## Installation
 
-1. Clone the repository:
+### Via PIP
 
    ```bash
-   git clone https://github.com/gianfa/docker_analyzer.git
+   pip install docker_analyzer
    ```
 
-2. Navigate to the project directory:
+### Via Poetry
 
    ```bash
-   cd docker-inspector
-   ```
-
-3. Install the tool using Poetry:
-
-   ```bash
-   poetry install
-   ```
-
-   For global CLI availability:
-
-   ```bash
-   poetry build
-   pip install dist/docker_analyzer-*.whl
+   poetry add docker_analyzer
    ```
 
 ## CLI Usage
